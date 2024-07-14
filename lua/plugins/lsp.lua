@@ -7,6 +7,11 @@ return {
 			{
 				"SmiteshP/nvim-navbuddy",
 			},
+			{
+				"Fildo7525/pretty_hover",
+				event = "LspAttach",
+				opts = {}
+			}
 		},
 		config = function()
 			-- Global mappings.
