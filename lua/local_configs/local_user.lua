@@ -12,6 +12,10 @@ local project_file_path = data_dir .. "/projects"
 if is_windows then
 	user = vim.api.nvim_eval("$USERNAME")
 	machine = vim.api.nvim_eval("$COMPUTERNAME")
+
+	data_dir = string.gsub(data_dir, "/", "\\")
+	lsp_file_path = string.gsub(lsp_file_path, "/", "\\")
+	project_file_path = string.gsub(project_file_path, "/", "\\")
 else
 	user = vim.api.nvim_eval("$USER")
 	-- machine = tostring(vim.api.nvim_eval("system('hostname')"))
@@ -29,11 +33,12 @@ machine = machine:lower()
 local user_id = user .. '@' .. machine
 
 local function create_config_file_if_not_exists(file_path)
-	os.execute("mkdir -p " .. data_dir)
+	r = os.execute("mkdir " .. data_dir)
+
 	local f = io.open(file_path, "r")
 	if f == nil then 
 		local file = io.open(file_path, "w")
-		io.close(file)
+		file:close()
 	end
 end
 
