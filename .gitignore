@@ -1,0 +1,4 @@
+*.gpg
+lazy-lock.json
+local_data/*
+data/
