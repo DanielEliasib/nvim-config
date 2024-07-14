@@ -26,7 +26,8 @@ return {
 				local current_date = os.date("%d/%m/%Y")
 				local system_data = vim.fn.systemlist("uname -s")
 				local icon = system_data[1] == 'Linux' and '  ' or '  '
-				return { " ", " ", " ", current_date, " ", local_user.user_id, icon, " " }
+				local centerd_user = local_user.centered_user_id
+				return { " ", " ", " ", current_date, " ", centerd_user, icon, " " }
 			end
 
 			require("dashboard").setup({
@@ -36,8 +37,9 @@ return {
 					shortcut = {
 						{
 							icon = " ",
+							icon_hl = '@variable',
 							desc = "Projects ",
-							group = "@property",
+							group = "@tag",
 							action = "Telescope neovim-project",
 							key = "p",
 						},
@@ -45,14 +47,15 @@ return {
 							icon = '󰮳 ',
 							icon_hl = '@variable',
 							desc = 'Last Session ',
-							group = 'Label',
+							group = 'DiagnosticHint',
 							action = 'NeovimProjectLoadRecent',
 							key = 'l',
 						},
 						{
 							icon = ' ',
+							icon_hl = '@variable',
 							desc = 'Find Projects ',
-							group = 'DiagnosticHint',
+							group = '@variable',
 							action = 'Telescope neovim-project discover',
 							key = 'k',
 						},

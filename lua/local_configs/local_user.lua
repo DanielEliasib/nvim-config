@@ -31,6 +31,23 @@ user = user:lower()
 machine = machine:lower()
 
 local user_id = user .. '@' .. machine
+local function center_user()
+	local user_length = string.len(user)
+	local machine_length = string.len(machine)
+	if machine_length > user_length then
+		local diff = machine_length - user_length
+		user_id_pad = string.rep(" ", diff) .. user
+		return user_id_pad .. "@" .. machine
+	end
+
+	if user_length > machine_length then
+		local diff = user_length - machine_length
+		machine_pad = machine .. string.rep(" ", diff)
+		return user .. "@" .. machine_pad
+	end
+
+	return user .. "@" .. machine
+end
 
 local function create_config_file_if_not_exists(file_path)
 	r = os.execute("mkdir " .. data_dir)
@@ -62,6 +79,7 @@ end
 local M = {}
 
 M.user_id = user_id
+M.centered_user_id = center_user()
 M.is_windows = is_windows
 M.is_linux = not is_windows
 
