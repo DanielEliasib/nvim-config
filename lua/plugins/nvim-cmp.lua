@@ -2,6 +2,7 @@ local generate_comparators = function(cmp)
 
 local default_comparators = {
 					cmp.config.compare.offset,
+					require("clangd_extensions.cmp_scores"),
 					cmp.config.compare.exact,
 					cmp.config.compare.kind,
 					cmp.config.compare.recently_used,
@@ -10,8 +11,8 @@ local default_comparators = {
 					cmp.config.compare.order,
 				}
 
-local clangd_extensions_scores= require("clangd_extensions.cmp_scores")
-table.insert(default_comparators, 3, clangd_extensions_scores)
+-- local clangd_extensions_scores= require("clangd_extensions.cmp_scores")
+-- table.insert(default_comparators, 3, clangd_extensions_scores)
 
 return default_comparators
 end
@@ -26,6 +27,7 @@ return {
 		'hrsh7th/cmp-vsnip',
 		'onsails/lspkind-nvim',
 		'hrsh7th/vim-vsnip',
+		'p00f/clangd_extensions.nvim',
 		'p00f/clangd_extensions.nvim'
 	},
 	event = 'VeryLazy',
