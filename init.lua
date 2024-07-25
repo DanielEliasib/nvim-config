@@ -14,6 +14,8 @@ vim.opt.number = true
 
 vim.opt.termguicolors = true
 
+vim.opt.scrolloff = 7
+
 vim.cmd('syntax enable')
 
 -- Custom Windows Terminal Title
