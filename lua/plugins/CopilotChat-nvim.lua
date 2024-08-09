@@ -2,16 +2,17 @@ return {
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		branch = "canary",
+		enabled = false,
 		dependencies = {
 			{ "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
 			{ "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
 		},
 		event = "VeryLazy",
 		opts = {
-			debug = true, -- Enable debugging
+			debug = false, -- Enable debugging
 
-			model = 'gpt-4',
-			temperature = 0.2,
+			model = 'gpt-4o',
+			temperature = 0.4,
 			show_help = false,
 
 			window = {
@@ -40,7 +41,7 @@ return {
 			error_header = '»» Error ', -- Header to use for errors
 		},
 		keys = {
-			{ '<leader>cc', '<cmd>CopilotChatToggle<CR>', mode = { "n", "v" }, silent = true, nowait = true, noremap = true, desc = 'Toggle Copilot Chat' },
+			{ '<leader>ct', '<cmd>CopilotChatToggle<CR>', mode = { "n", "v" }, silent = true, nowait = true, noremap = true, desc = 'Toggle Copilot Chat' },
 		}
 		-- See Commands section for default commands if you want to lazy load on them
 	},

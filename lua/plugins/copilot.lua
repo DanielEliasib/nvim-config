@@ -3,6 +3,7 @@ return {
 		'zbirenbaum/copilot.lua',
 		event = 'VeryLazy',
 		lazy = true,
+		enabled = true,
 		config = function()
 			require('copilot').setup({
 				panel = {
@@ -22,7 +23,7 @@ return {
 				},
 				suggestion = {
 					enabled = true,
-					auto_trigger = true,
+					auto_trigger = false,
 					debounce = 50,
 					keymap = {
 						accept = false,
@@ -56,5 +57,6 @@ return {
 				end
 			end, { desc = "Super Tab" })
 		end
+
 	}
 }
