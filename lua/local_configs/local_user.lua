@@ -1,6 +1,11 @@
 -- check if file exists
 local is_windows = vim.loop.os_uname().sysname:match('Windows') ~= nil
 
+local function directory_exists(path)
+    local stat = vim.loop.fs_stat(path)
+    return stat and stat.type == "directory" or false
+end
+
 local user = ''
 local machine = ''
 
@@ -50,7 +55,9 @@ local function center_user()
 end
 
 local function create_config_file_if_not_exists(file_path)
-	r = os.execute("mkdir " .. data_dir)
+	if not directory_exists(data_dir) then
+		r = os.execute("mkdir " .. data_dir)
+	end
 
 	local f = io.open(file_path, "r")
 	if f == nil then 
