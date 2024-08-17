@@ -68,6 +68,7 @@ require('lsp-configs')
 
 vim.cmd [[colorscheme sweet-fusion]]
 
+
 -- Remap key adding zz to center the screen
 vim.api.nvim_set_keymap('n', '<C-u>', '<C-u>zz', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true })
