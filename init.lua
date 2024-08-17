@@ -42,21 +42,27 @@ function open_dashboard()
 	local height = vim.api.nvim_get_option("lines") -- get the screen height
 	local buf = vim.api.nvim_create_buf(false, true) -- create an empty buffer
 
-	local x_pos = 0 -- calculate the x position
-	local y_pos = 0 -- calculate the y position
+	local x_pos = 0                               -- calculate the x position
+	local y_pos = 0                               -- calculate the y position
 
-	local win = vim.api.nvim_open_win(0, true, { -- create a new floating window
+	local win = vim.api.nvim_open_win(0, true, {  -- create a new floating window
 		relative = "editor",                      -- position relative to the editor
-		width = width,                               -- window width
-		height = height,                              -- window height
-		col = x_pos,       -- window x position
-		row = y_pos,      -- window y position
+		width = width,                            -- window width
+		height = height,                          -- window height
+		col = x_pos,                              -- window x position
+		row = y_pos,                              -- window y position
 		style = "minimal"                         -- remove window decorations
 	})
-	vim.cmd("Dashboard")                 -- run the Dashboard command in the terminal buffer -- set the buffer type to nofile
+	vim.cmd("Dashboard")                          -- run the Dashboard command in the terminal buffer -- set the buffer type to nofile
 end
 
 vim.api.nvim_create_user_command("Dash", open_dashboard, { nargs = 0 })
+
+local function copy_path()
+	vim.fn.setreg('+', vim.fn.expand('%:p'))
+end
+
+vim.api.nvim_create_user_command("Copypath", copy_path, { nargs = 0 })
 
 require('lsp-configs')
 
