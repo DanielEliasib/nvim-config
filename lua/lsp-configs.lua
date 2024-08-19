@@ -27,7 +27,7 @@ end
 local on_attach_with_inlay = function(client, bufnr)
 	if client.server_capabilities.inlayHintProvider then
 		vim.g.inlay_hints_visible = true
-		vim.lsp.inlay_hint.enable(true, {bufnr = bufnr})
+		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 	end
 
 	on_attach(client, bufnr)
@@ -55,6 +55,29 @@ for _, lsp in ipairs(lsps) do
 			enable_import_completion = true,
 			sdk_include_prereleases = true,
 			analyze_open_documents_only = true,
+		}
+	elseif lsp == 'lua_ls' then
+		local settings = {
+			Lua = {
+				runtime = {
+					-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+					version = 'LuaJIT',
+				},
+				diagnostics = {
+					-- Get the language server to recognize the `vim` global
+					globals = { 'vim' },
+				},
+				workspace = {
+					-- Make the server aware of Neovim runtime files
+					library = vim.api.nvim_get_runtime_file("", true),
+				},
+			}
+		}
+
+		require('lspconfig')[lsp].setup {
+			capabilities = cap,
+			on_attach = attach_func,
+			settings = settings
 		}
 	else
 		require('lspconfig')[lsp].setup {

@@ -26,6 +26,7 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
+					fzf = require('fzf-lua')
 					-- Enable completion triggered by <c-x><c-o>
 					vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
@@ -55,14 +56,14 @@ return {
 					vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action,
 						{ buffer = ev.buf, desc = "Code action" })
 
-					vim.keymap.set({ "n", "v" }, "fs", require("telescope.builtin").lsp_document_symbols,
+					vim.keymap.set({ "n", "v" }, "fs", fzf.lsp_document_symbols,
 						{ buffer = ev.buf, desc = "Document symbols" })
 
 					vim.keymap.set({ "n", "v" }, "<leader>fs",
-						require("telescope.builtin").lsp_dynamic_workspace_symbols,
+						fzf.lsp_live_workspace_symbols,
 						{ buffer = ev.buf, desc = "Workspace symbols" }
 					)
-					vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references,
+					vim.keymap.set("n", "gr", fzf.lsp_references,
 						{ buffer = ev.buf, desc = "References" })
 
 					vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format({ async = true }) end,

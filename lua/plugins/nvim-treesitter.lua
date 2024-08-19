@@ -30,7 +30,6 @@ return {
 
 						keymaps = {
 							['ia'] = { query = '@parameter.inner', desc = 'Select inner part of a parameter/argument' },
-
 						}
 
 					}

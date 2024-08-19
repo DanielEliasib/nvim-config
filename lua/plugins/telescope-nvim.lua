@@ -20,60 +20,18 @@ return {
 						-- the default case_mode is "smart_case"
 					},
 				},
-				-- pickers =
-				-- {
-				-- 	lsp_references =
-				-- 	{
-				-- 		theme = 'ivy',
-				-- 		layout_config =
-				-- 		{
-				-- 			height = 0.4,
-				-- 			prompt_position = 'bottom',
-				-- 		},
-				-- 	}
-				-- },
-				pickers = {
-					live_grep = {
-						layout_strategy = "horizontal",
-					},
-					find_files = {
-						path_display = { "full" }
-					}
-				},
 				defaults = {
-					mappings = {
-						i = { ["<c-t>"] = trouble.open, ["<CR>"] = actions.select_default + actions.center },
-						n = { ["<c-t>"] = trouble.open, ["<CR>"] = actions.select_default + actions.center },
-					},
 					path_display = { "tail" },
 					dynamic_preview_title = true,
 					layout_strategy = "vertical",
 					file_ignore_patterns = { "node_modules", ".git" },
 					layout_config = {
-						height = 0.95,
-						width = 0.95
-
+						height = 0.8,
+						width = 0.8
 					}
-					-- vimgrep_arguments = {
-					-- 	"rg",
-					-- 	"--color=never",
-					-- 	"--no-heading",
-					-- 	"--with-filename",
-					-- 	"--line-number",
-					-- 	"--column",
-					-- 	"--smart-case",
-					-- 	"--trim" -- add this value
-					-- }
 				},
 			})
 			require("telescope").load_extension("fzf")
-
-			local builtin = require('telescope.builtin')
-			vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find files" })
-			vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Live grep" })
-			vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Buffers" })
-			vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Help tags" })
-			vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = "Resume search" })
 		end,
 	},
 	{
