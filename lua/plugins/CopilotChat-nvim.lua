@@ -12,8 +12,8 @@ return {
 			debug = false, -- Enable debugging
 
 			model = 'gpt-4o',
-			temperature = 0.4,
-			show_help = false,
+			temperature = 0.25,
+			show_help = true,
 
 			window = {
 				layout = 'horizontal', -- 'vertical', 'horizontal', 'float'
@@ -71,10 +71,18 @@ return {
 			question_header = '■ User ', -- Header to use for user questions
 			answer_header = '■ Copilot ', -- Header to use for AI answers
 			error_header = '»» Error ', -- Header to use for errors
+			mappings = {
+				complete = {
+					insert = '',
+				}
+			}
 		},
 		keys = {
 			{ '<leader>cc', '<cmd>CopilotChatToggle<CR>', mode = { "n", "v" }, silent = true, nowait = true, noremap = true, desc = 'Toggle Copilot Chat' },
-		}
+		},
+		init = function()
+			require("CopilotChat.integrations.cmp").setup()
+		end
 		-- See Commands section for default commands if you want to lazy load on them
 	},
 }
